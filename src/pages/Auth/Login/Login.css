@@ -142,3 +142,29 @@ input::placeholder {
     width: 40%;
   }
 }
+
+
+/* In Login.css */
+.google-signin-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 250px;
+}
+
+.google-signin-icon {
+  width: 20px;
+  margin-right: 10px;
+}

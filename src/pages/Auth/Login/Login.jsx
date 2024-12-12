@@ -1,17 +1,29 @@
 import "./Login.css";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import { Fade } from "react-awesome-reveal";
-
 import { useAuth } from "../../../contexts/AuthProvider";
+
+// Import Firebase authentication functions
+import { auth, googleProvider, signInWithPopup } from "../../../firebase/firebase"; // Update the path to match your file structure
 
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const { handleLogin, authError } = useAuth();
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      console.log("Google user", user);
+      // You can now handle the authenticated user (e.g., save to context or redirect)
+    } catch (error) {
+      console.error("Google sign-in error", error);
+    }
+  };
 
   return (
     <main className="login-page-container">
@@ -93,7 +105,6 @@ export const Login = () => {
           {authError && <div className="error-message">{authError}</div>}
           <div className="btn-container">
             <button type="submit">
-              {" "}
               <Fade duration={150} cascade>
                 Login
               </Fade>
@@ -109,8 +120,20 @@ export const Login = () => {
               </Fade>
             </button>
           </div>
+
+          <div className="google-signin-btn-container">
+            <button type="button" className="google-signin-btn" onClick={handleGoogleSignIn}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google.png"
+                alt="Google Sign-In"
+                className="google-signin-icon"
+              />
+              Sign in with Google
+            </button>
+          </div>
+
           <p className="switch-to-signup">
-            Dont have an account? <Link to="/signup">Sign Up</Link>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
         </form>
       </section>

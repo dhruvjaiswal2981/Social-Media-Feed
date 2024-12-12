@@ -71,6 +71,6 @@ Start the server
 - https://github.com/dhruvjaiswal2981
 
 ## Deployment
-Live Demo: The application is hosted on Vercel.
-Access it here: https://social-media-feed-six.vercel.app/
+- Live Demo: The application is hosted on Vercel.
+- Access it here: https://social-media-feed-six.vercel.app/
 
